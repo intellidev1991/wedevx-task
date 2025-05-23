@@ -1,4 +1,4 @@
-# Almă Project
+# WEDEVX Task
 
 ## Demo Credentials for admin login
 
