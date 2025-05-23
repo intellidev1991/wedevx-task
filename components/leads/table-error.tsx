@@ -1,3 +1,5 @@
+"use client";
+
 interface TableErrorProps {
   error: string;
 }

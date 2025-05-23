@@ -1,3 +1,5 @@
+"use client";
+
 interface TitleProps {
   children: React.ReactNode;
 }

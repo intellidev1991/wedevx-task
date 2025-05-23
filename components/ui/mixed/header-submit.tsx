@@ -1,3 +1,5 @@
+"use client";
+
 import { Logo } from "../logo";
 import { Typography } from "./typography";
 import Image from "next/image";

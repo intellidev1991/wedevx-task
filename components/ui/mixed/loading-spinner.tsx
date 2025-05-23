@@ -1,3 +1,5 @@
+"use client";
+
 export const LoadingSpinner = () => {
   return (
     <div className="flex justify-center py-12" aria-label="Loading spinner">

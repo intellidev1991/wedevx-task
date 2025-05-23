@@ -74,7 +74,7 @@ export default function AdminPage() {
       <div className="space-y-6">
         <Title>Leads</Title>
 
-        <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="flex flex-col sm:flex-row justify-start gap-4">
           <SearchBar onSearch={handleSearch} />
           <StatusFilter onFilterChange={handleStatusFilter} />
         </div>

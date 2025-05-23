@@ -1,3 +1,4 @@
+"use client";
 interface SearchNotFoundProps {
   searchQuery: string | null;
 }

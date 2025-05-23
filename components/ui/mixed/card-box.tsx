@@ -1,3 +1,5 @@
+"use client";
+
 interface CardBoxProps {
   children: React.ReactNode;
 }
