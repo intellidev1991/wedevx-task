@@ -5,6 +5,9 @@
 - **Email**: admin@alma.com
 - **Password**: password123
 
+## Vercel Demo link:
+[https://wedevx-task.vercel.app](https://wedevx-task.vercel.app)
+
 ## Setup Guide
 
 ### Prerequisites
