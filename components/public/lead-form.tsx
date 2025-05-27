@@ -14,13 +14,20 @@ import { FormError } from "../ui/mixed/form-error";
 import { Checkbox } from "@/components/ui/checkbox";
 import { countries } from "@/constants/countries";
 import { visaOptions } from "@/constants/visaOptions";
+import { cx } from "class-variance-authority";
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   country: z.string().min(1, { message: "Country is required" }),
-  linkedInProfile: z.string().url({ message: "Invalid LinkedIn URL" }),
+  linkedInProfile: z
+    .string()
+    .url({ message: "Invalid LinkedIn URL" })
+    .regex(/^https:\/\/(www\.)?linkedin\.com\/in\/[A-Za-z0-9-_%]+\/?$/, {
+      message:
+        "Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/username)",
+    }),
   visasOfInterest: z
     .array(z.string())
     .min(1, { message: "Please select at least one visa" }),
@@ -45,12 +52,15 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
     handleSubmit,
     control,
     formState: { errors },
+    watch,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       visasOfInterest: [],
     },
   });
+
+  const countryValue = watch("country");
 
   const onSubmit = async (data: FormValues) => {
     console.log(data);
@@ -128,9 +138,14 @@ export function LeadForm({ onSuccess }: LeadFormProps) {
         <select
           {...register("country")}
           aria-label="Country of Citizenship"
-          className="w-full px-4 py-3 text-base rounded-lg border border-gray-200 focus:ring-2 focus:ring-black focus:border-transparent text-gray-400"
+          className={cx(
+            "w-full px-4 py-3 text-base rounded-lg border border-gray-200 focus:ring-2 focus:ring-black focus:border-transparent appearance-none bg-white",
+            countryValue === "" ? "text-gray-400" : "text-gray-900"
+          )}
         >
-          <option value="">Country of Citizenship</option>
+          <option value="" className="text-gray-400">
+            Country of Citizenship
+          </option>
           {countries.map((country) => (
             <option key={country} value={country} className="text-gray-900">
               {country}
